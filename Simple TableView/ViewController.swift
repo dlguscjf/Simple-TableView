@@ -19,7 +19,19 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         myTable.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    //sections 갯수 증가(복사)
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    //sections 의 제목 추가
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0{
+            return "1st Section"
+        }
+        else {
+            return "2st Section"
+        }
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
         //셀 갯수 지정
@@ -38,6 +50,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         //이미지출력
         return cell
     }
+    //table view 클릭했을때 실행
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         let alert = UIAlertController(title:data[indexPath.row], message: subdata[indexPath.row], preferredStyle: .alert)
         let Action = UIAlertAction(title: "Section : \(indexPath.section) Row : \(indexPath.row)", style: .default)
@@ -46,6 +59,8 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         alert.addAction(noAction)
         self.present(alert, animated: true, completion: nil)
     }
-    
+    //tableview의 높이 조절
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {return 100.0}
 }
 
